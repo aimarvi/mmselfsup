@@ -131,3 +131,7 @@ INFO
 
 # Pytorch
 *.pth
+
+# amarvi
+data/
+runlog/
