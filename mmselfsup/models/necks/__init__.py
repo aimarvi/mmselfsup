@@ -3,6 +3,7 @@ from .avgpool2d_neck import AvgPool2dNeck
 from .beitv2_neck import BEiTV2Neck
 from .cae_neck import CAENeck
 from .densecl_neck import DenseCLNeck
+from .dino_neck import DINONeck
 from .linear_neck import LinearNeck
 from .mae_neck import ClsBatchNormNeck, MAEPretrainDecoder
 from .milan_neck import MILANPretrainDecoder
@@ -15,7 +16,7 @@ from .simmim_neck import SimMIMNeck
 from .swav_neck import SwAVNeck
 
 __all__ = [
-    'AvgPool2dNeck', 'BEiTV2Neck', 'DenseCLNeck', 'LinearNeck', 'MoCoV2Neck',
+    'AvgPool2dNeck', 'BEiTV2Neck', 'DenseCLNeck', 'DINONeck', 'LinearNeck', 'MoCoV2Neck',
     'NonLinearNeck', 'ODCNeck', 'RelativeLocNeck', 'SwAVNeck',
     'MAEPretrainDecoder', 'SimMIMNeck', 'CAENeck', 'MixMIMPretrainDecoder',
     'ClsBatchNormNeck', 'MILANPretrainDecoder'
