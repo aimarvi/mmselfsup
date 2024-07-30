@@ -1,1 +1,11 @@
-_base_ = './dino_vit-base-p16_8xb64-amp-coslr-100e_in1k.py'
+_base_ = [
+    '../_base_/models/dino.py',                  # model
+    # '../_base_/datasets/imagenet_dino.py',       # data
+    '../_base_/schedules/sgd_coslr-100e_in1k.py',  # training schedule
+    '../_base_/dino_runtime.py',                # runtime setting
+]
+
+# custom dataset config
+
+dataset_type = 'mmcls.CustomDataset'
+data_root = 'data/face/'
