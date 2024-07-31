@@ -1,6 +1,6 @@
 # Copyright (c) OpenMMLab. All rights reserved.
 from .formatting import PackSelfSupInputs
-from .processing import (BEiTMaskGenerator, ColorJitter, DINOMultiCrop, RandomCrop,
+from .processing import (BEiTMaskGenerator, ColorJitter, RandomCrop,
                          RandomGaussianBlur, RandomPatchWithLabels,
                          RandomResizedCrop,
                          RandomResizedCropAndInterpolationWithTwoPic,
@@ -8,6 +8,7 @@ from .processing import (BEiTMaskGenerator, ColorJitter, DINOMultiCrop, RandomCr
                          SimMIMMaskGenerator)
 from .pytorch_transform import MAERandomResizedCrop
 from .wrappers import MultiView
+from .dino_multicrop import DINOMultiCrop
 
 __all__ = [
     'PackSelfSupInputs', 'RandomGaussianBlur', 'RandomSolarize',

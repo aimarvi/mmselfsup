@@ -4,10 +4,11 @@ from typing import List, Optional, Union
 import torch
 from torch import nn
 
-from mmselfsup.models import BaseModel, CosineEMA
 from mmselfsup.registry import MODELS
 from mmselfsup.structures import SelfSupDataSample
 
+from .base import BaseModel
+from ..utils import CosineEMA
 
 @MODELS.register_module()
 class DINO(BaseModel):
