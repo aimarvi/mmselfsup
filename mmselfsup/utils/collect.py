@@ -30,6 +30,7 @@ def nondist_forward_collect(func: object, data_loader: DataLoader,
 
     results_dict = {}
     for k in results[0].keys():
+        print(k, length)
         results_dict[k] = torch.cat([batch[k] for batch in results], dim=0)
         assert results_dict[k].size(0) == length
     return results_dict

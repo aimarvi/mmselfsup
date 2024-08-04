@@ -23,6 +23,21 @@ class AvgPool2d(nn.Module):
         assert len(x) == 1
         return [self.avgpool(x[-1])]
 
+class AvgPool2d_DINO(nn.Module):
+    """The wrapper for AdaptiveAvgPool2d, which supports tuple input.
+	Modified for output of DINO backbone"""
+
+    def __init__(self, output_size: int = 1) -> None:
+        super().__init__()
+        self.avgpool = nn.AdaptiveAvgPool2d((1,1))
+
+    def forward(self, x: Sequence[torch.Tensor]) -> List[torch.Tensor]:
+        """Forward function."""
+        outs = []
+        for img in x:
+            x_ = self.avgpool(img)
+            outs.append(x_)
+        return outs
 
 class Extractor():
     """Feature extractor.
@@ -41,6 +56,7 @@ class Extractor():
     POOL_MAP = {
         'AvgPool2d': AvgPool2d,
         'MultiPooling': MultiPooling,
+        'AvgPool2d_DINO': AvgPool2d_DINO,
     }
 
     def __init__(self,
@@ -90,7 +106,9 @@ class Extractor():
             feature_dict['feat'] = flat_features[0]
         else:
             for i, feat in enumerate(flat_features):
-                feature_dict[f'feat{self.feature_indices[i] + 1}'] = feat
+                print(i, feat.shape)
+                # feature_dict[f'feat{self.feature_indices[i] + 1}'] = feat
+                feature_dict[f'feat {i+1}'] = feat
         return feature_dict
 
     def __call__(self, model: BaseModel) -> Dict[str, torch.Tensor]:

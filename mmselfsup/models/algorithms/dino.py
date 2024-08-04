@@ -1,5 +1,5 @@
 # Copyright (c) OpenMMLab. All rights reserved.
-from typing import List, Optional, Union
+from typing import List, Optional, Union, Tuple
 
 import torch
 from torch import nn
@@ -58,6 +58,25 @@ class DINO(BaseModel):
             self.teacher.module[1].last_layer)
         self.teacher.module[1].last_layer.weight_g.data.fill_(1)
         self.teacher.module[1].last_layer.weight_g.requires_grad = False
+
+    def extract_feat(self, inputs: List[torch.Tensor],
+                     **kwarg) -> Tuple[torch.Tensor]:
+        """Function to extract features from backbone.
+
+        Args:
+            inputs (List[torch.Tensor]): The input images.
+            data_samples (List[SelfSupDataSample]): All elements required
+                during the forward function.
+
+        Returns:
+            Tuple[torch.Tensor]: Backbone outputs.
+        """
+        # x is shape (11, 2, [batch-size, 768, 14, 14]))
+        # only return the 14x14 image tokens, not the clss token
+        x = self.backbone(inputs[0])
+        x = tuple(layer_data[0] for layer_data in x)
+        print(len(x), x[0].shape)
+        return x
 
     def loss(self, inputs: torch.Tensor,
              data_samples: List[SelfSupDataSample]) -> dict:
