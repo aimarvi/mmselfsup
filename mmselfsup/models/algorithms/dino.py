@@ -75,7 +75,6 @@ class DINO(BaseModel):
         # only return the 14x14 image tokens, not the clss token
         x = self.backbone(inputs[0])
         x = tuple(layer_data[0] for layer_data in x)
-        print(len(x), x[0].shape)
         return x
 
     def loss(self, inputs: torch.Tensor,

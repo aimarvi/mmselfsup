@@ -106,7 +106,6 @@ class Extractor():
             feature_dict['feat'] = flat_features[0]
         else:
             for i, feat in enumerate(flat_features):
-                print(i, feat.shape)
                 # feature_dict[f'feat{self.feature_indices[i] + 1}'] = feat
                 feature_dict[f'feat {i+1}'] = feat
         return feature_dict
