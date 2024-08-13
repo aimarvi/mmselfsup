@@ -27,8 +27,8 @@ train_pipeline = [
     dict(type='PackSelfSupInputs', meta_keys=['img_path'])
 ]
 train_dataloader = dict(
-    batch_size=64,
-    num_workers=16,
+    batch_size=128,
+    num_workers=1,
     persistent_workers=True,
     sampler=dict(type='DefaultSampler', shuffle=True),
     collate_fn=dict(type='default_collate'),

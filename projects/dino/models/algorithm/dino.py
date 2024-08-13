@@ -57,6 +57,7 @@ class DINO(BaseModel):
             self.teacher.module[1].last_layer)
         self.teacher.module[1].last_layer.weight_g.data.fill_(1)
         self.teacher.module[1].last_layer.weight_g.requires_grad = False
+        self.teacher.module[1].last_layer.weight_v.requires_grad = False
 
     def loss(self, inputs: torch.Tensor,
              data_samples: List[SelfSupDataSample]) -> dict:
